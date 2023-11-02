@@ -1,0 +1,13 @@
+.piano-roll-card {
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 10px;
+    min-width:30%;
+    width: fit-content;
+    box-sizing: border-box;
+}
+
+.description {
+    margin-top: 10px;
+}
+  

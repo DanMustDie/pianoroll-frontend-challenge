@@ -8,10 +8,8 @@ import { NavbarComponent } from './navbar.component';
   declarations: [
     NavbarComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [],
   providers: [],
-  bootstrap: [NavbarComponent]
+  exports:[NavbarComponent]
 })
 export class NavbarModule { }

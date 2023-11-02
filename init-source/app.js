@@ -6,6 +6,7 @@ class PianoRollDisplay {
     this.data = null;
   }
 
+  //In PrService
   async loadPianoRollData() {
     try {
       const response = await fetch('https://pianoroll.ai/random_notes');
@@ -17,6 +18,7 @@ class PianoRollDisplay {
       console.error('Error loading data:', error);
     }
   }
+  //--
 
   preparePianoRollCard(rollId) {
     const cardDiv = document.createElement('div');

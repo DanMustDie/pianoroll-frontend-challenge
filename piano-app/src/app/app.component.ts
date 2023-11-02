@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from 'src/navbar/navbar.component';
+import { PRListComponent } from 'src/prlist/prlist.component';
 
 @Component({
   selector: 'app-root',
