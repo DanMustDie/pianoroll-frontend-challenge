@@ -1,0 +1,10 @@
+.modal-container .piano-roll-svg{
+    border: 2px solid #381815;
+    width :fit-content;
+    padding: 10px;
+}
+
+.modal-container{
+    width: 600px;
+    height: 600px;
+}

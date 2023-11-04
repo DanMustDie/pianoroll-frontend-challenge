@@ -9,7 +9,7 @@ export function generateGradientTable(startColor, endColor, steps) {
   return gradientTable;
 }
 
-export default class PRClass {
+export class PianoRollClass {
   constructor(svgElement, sequence) {
     this.svgElement = svgElement;
     this.end = null;
