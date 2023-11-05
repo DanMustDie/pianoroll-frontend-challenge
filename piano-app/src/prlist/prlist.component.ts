@@ -15,7 +15,6 @@ export class PRListComponent implements OnInit{
     async ngOnInit():Promise<any>  {
         this.pianorolls = [];
         this.data = await this.prService.loadPianoRollData();
-        console.log('On Init log')
         if(this.data != null){
             
             for (let it = 0; it < 20; it++) {
@@ -25,9 +24,6 @@ export class PRListComponent implements OnInit{
                 let pr:PianoRoll = { notes: partData,id:it}
                 this.pianorolls.push(pr)
             }
-            
-            console.log(this.data)
-            console.log(this.pianorolls)
         }else{
             console.log('Something went terribly wrong')
         }

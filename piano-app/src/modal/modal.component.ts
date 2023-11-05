@@ -9,6 +9,7 @@ import { PianoRoll } from "src/pianoroll/pianoroll"
 
 export class ModalComponent implements OnInit{
     @Input() pianoroll!: PianoRoll;
+    
     ngOnInit(): void {
         const MDcontainer = document.getElementsByClassName('modal-container')[0]
         if(MDcontainer != null){

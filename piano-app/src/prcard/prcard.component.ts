@@ -1,6 +1,7 @@
-import { Component,Input, OnInit } from "@angular/core";
+import { Component,Input, OnInit,inject } from "@angular/core";
 import { PianoRoll } from "src/pianoroll/pianoroll";
 import { CommonModule } from "@angular/common";
+import { ModalService } from "src/services/modal.service";
 //@ts-ignore
 import {PianoRollClass} from "../assets/pianoroll.js";
 @Component({
@@ -10,6 +11,7 @@ import {PianoRollClass} from "../assets/pianoroll.js";
 })
 
 export class PRCardComponent implements OnInit{
+    modalService = inject(ModalService)
     @Input() pianoroll!: PianoRoll;
     ngOnInit(): void {
         const cardDiv = document.getElementsByClassName(`piano-roll-card`)[this.pianoroll.id];
@@ -23,5 +25,10 @@ export class PRCardComponent implements OnInit{
             cardDiv.appendChild(svg);
         }
     }
-
+    openModal(){
+        this.modalService.setPR(this.pianoroll)
+        this.modalService.showModal()
+        console.log(this.pianoroll)
+        console.log(this.modalService.getModalVisibility())
+    }
 }

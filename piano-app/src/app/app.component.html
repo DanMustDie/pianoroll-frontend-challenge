@@ -1,4 +1,7 @@
 <main>
     <nav-bar></nav-bar>
+    <div class="overlay" *ngIf='visibilityStatus' (click)="closeModal()">
+        <modal-window *ngIf="visibilityStatus" [pianoroll]='this.modalService.getPR()'></modal-window>
+    </div>
     <pr-list></pr-list>
 </main>
