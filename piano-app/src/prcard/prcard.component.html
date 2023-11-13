@@ -1,4 +1,4 @@
-<div class="piano-roll-card" (click)="openModal()">
-    <script src="./prcard.component.ts" ></script>
+<div class="piano-roll-card" >
+    <app-prsvg [pianoroll] ='pianoroll' (click)="openModal()"></app-prsvg>
     <div class="description">This is a piano roll <p>#{{pianoroll.id}}</p></div>
 </div>

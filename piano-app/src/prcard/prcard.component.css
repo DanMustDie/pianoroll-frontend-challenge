@@ -4,6 +4,7 @@
     padding: 5px;
     width:100%;
     box-sizing: border-box;
+    object-fit: contain;
 }
 
 .description {

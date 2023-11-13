@@ -1,9 +1,5 @@
-svg{
-    border: 2px solid #000000;
-    padding: 10px;
-}
 
-.modal-container{
+.main-container{
     width: 600px;
     height: 450px;
     background-color: #ffffff;
@@ -14,4 +10,5 @@ svg{
 .modal-container p{
     font-size: large;
     font-weight: 700;
+    width:30rem;
 }

@@ -1,5 +1,8 @@
-import {Component,Input, OnInit} from "@angular/core"
+import {Component,Input, inject,OnInit} from "@angular/core"
 import { PianoRoll } from "src/pianoroll/pianoroll"
+import { ModalService } from "src/services/modal.service";
+//@ts-ignore
+import {PianoRollClass} from "../assets/pianoroll.js";
 
 @Component({
     selector:'modal-window',
@@ -8,12 +11,10 @@ import { PianoRoll } from "src/pianoroll/pianoroll"
 })
 
 export class ModalComponent implements OnInit{
-    @Input() pianoroll!: PianoRoll;
-    
-    ngOnInit(): void {
-        const MDcontainer = document.getElementsByClassName('modal-container')[0]
-        if(MDcontainer != null){
-            MDcontainer.appendChild(this.pianoroll.svg)
-        }
+    modalService = inject(ModalService)
+    @Input() pianoroll: PianoRoll = this.modalService.getPR();
+    ngOnInit(){
+        const doc = document.getElementsByClassName('modal-svg-container')[0];
+        doc.innerHTML = this.pianoroll.svg
     }
 }

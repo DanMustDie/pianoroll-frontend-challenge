@@ -6,7 +6,6 @@ import { NavbarModule } from 'src/navbar/navbar.module';
 import { PRListModule } from 'src/prlist/prlist.module';
 import { ModalModule } from 'src/modal/modal.module';
 
-
 @NgModule({
   declarations: [
     AppComponent

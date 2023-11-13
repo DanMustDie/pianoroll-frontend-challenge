@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 
 import { PRCardComponent } from "./prcard.component";
-import { ModalModule } from "src/modal/modal.module";
-
+import { PrsvgModule } from "src/prsvg/prsvg.module";
 @NgModule({
     declarations:[PRCardComponent],
-    imports:[],
+    imports:[PrsvgModule],
     providers:[],
     exports:[PRCardComponent]
 })

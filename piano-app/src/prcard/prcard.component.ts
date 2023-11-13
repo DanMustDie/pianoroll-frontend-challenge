@@ -10,25 +10,14 @@ import {PianoRollClass} from "../assets/pianoroll.js";
     styleUrls:['./prcard.component.css']
 })
 
-export class PRCardComponent implements OnInit{
-    modalService = inject(ModalService)
+export class PRCardComponent{
+    modalService = inject(ModalService);
+    svgParsed : any = null;
+    cardDiv : Element | null = null;
     @Input() pianoroll!: PianoRoll;
-    ngOnInit(): void {
-        const cardDiv = document.getElementsByClassName(`piano-roll-card`)[this.pianoroll.id];
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.classList.add('piano-roll-svg');
-        svg.setAttribute('width', '80%');
-        svg.setAttribute('height', '150');
-        const roll = new PianoRollClass(svg,this.pianoroll.notes)
-        this.pianoroll.svg = svg;
-        if(cardDiv != null){
-            cardDiv.appendChild(svg);
-        }
-    }
     openModal(){
         this.modalService.setPR(this.pianoroll)
         this.modalService.showModal()
-        console.log(this.pianoroll)
-        console.log(this.modalService.getModalVisibility())
+        console.log(this.pianoroll.id)
     }
 }
