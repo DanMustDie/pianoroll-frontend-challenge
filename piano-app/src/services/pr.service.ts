@@ -29,6 +29,12 @@ export class PrService {
           let pr:PianoRoll = { notes: partData,id:it}
           this.pianorolls.push(pr)
       }
+      return true
     }
+    return false
+  }
+
+  excludeElementById(index : number){
+    return this.pianorolls.filter((element,ind,arr) => index!= element.id )
   }
 }

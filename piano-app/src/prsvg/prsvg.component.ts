@@ -10,6 +10,7 @@ import {PianoRollClass} from "../assets/pianoroll.js";
 export class PrsvgComponent implements OnInit{
  @Input() pianoroll! : PianoRoll ;
   ngOnInit(){
+      const svgQuery = 'piano-roll-svg' + String(this.pianoroll.id);
       const svgDoc = document.createElementNS('http://www.w3.org/2000/svg','svg')
       const svg = document.getElementsByClassName('piano-roll-svg')[this.pianoroll.id];
       const roll = new PianoRollClass(svgDoc,this.pianoroll.notes)
@@ -17,5 +18,7 @@ export class PrsvgComponent implements OnInit{
       if(svg!=null){
         svg.appendChild(svgDoc)
       }
+      //@ts-ignores
+    console.log(document.getElementsByClassName('piano-roll-svg')['piano-roll-svg2'])
   }
 }

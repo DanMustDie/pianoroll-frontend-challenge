@@ -3,5 +3,6 @@
     <div class="overlay" *ngIf='visibilityStatus' (click)="closeModal()">
         <modal-window *ngIf="visibilityStatus"></modal-window>
     </div>
-    <pr-list></pr-list>
+    <pr-list *ngIf="dataLoaded"></pr-list>
+    <div *ngIf="!dataLoaded">Loading...</div>
 </main>

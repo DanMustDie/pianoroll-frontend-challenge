@@ -8,7 +8,10 @@ import { PianoRoll } from "src/pianoroll/pianoroll";
     styleUrls:['./prlist.component.css']
 })
 
-export class PRListComponent{
+export class PRListComponent implements OnInit{
     prService = inject(PrService);
-    pianorolls: PianoRoll[] = this.prService.pianorolls;
+    pianorolls: PianoRoll[] = this.prService.excludeElementById(1);
+    ngOnInit(): void{
+        console.log(this.pianorolls)
+    }
 }
