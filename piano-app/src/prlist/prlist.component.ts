@@ -12,6 +12,6 @@ export class PRListComponent implements OnInit{
     prService = inject(PrService);
     pianorolls: PianoRoll[] = this.prService.excludeElementById(1);
     ngOnInit(): void{
-        console.log(this.pianorolls)
+        console.log('list loaded')
     }
 }

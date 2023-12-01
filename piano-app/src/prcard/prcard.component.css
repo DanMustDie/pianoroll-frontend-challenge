@@ -2,7 +2,7 @@
     border: 1px solid #ccc;
     margin: 5px;
     padding: 5px;
-    width:100%;
+    width:300px;
     box-sizing: border-box;
     object-fit: contain;
 }
