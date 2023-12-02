@@ -5,10 +5,18 @@
     background-color: #ffffff;
     border-radius: 6px;
     padding: 6px;
+    display:inline-block;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .modal-container p{
     font-size: large;
     font-weight: 700;
     width:30rem;
+}
+
+.sidebar{
+    border-top: solid 2px black; 
+    width: 100%;
 }

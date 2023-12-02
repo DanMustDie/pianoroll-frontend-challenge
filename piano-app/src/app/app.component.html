@@ -1,6 +1,6 @@
 <main>
     <nav-bar></nav-bar>
-    <div class="overlay" *ngIf='visibilityStatus' (click)="closeModal()">
+    <div class="overlay" *ngIf='visibilityStatus' (click)="closeModal($event)">
         <modal-window *ngIf="visibilityStatus"></modal-window>
     </div>
     <pr-list *ngIf="dataLoaded"></pr-list>

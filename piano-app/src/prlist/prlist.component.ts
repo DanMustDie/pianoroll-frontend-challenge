@@ -1,4 +1,4 @@
-import { Component, OnInit,inject} from "@angular/core";
+import { Component, OnInit,inject,Input} from "@angular/core";
 import { PrService } from "src/services/pr.service";
 import { PianoRoll } from "src/pianoroll/pianoroll";
 
@@ -10,7 +10,7 @@ import { PianoRoll } from "src/pianoroll/pianoroll";
 
 export class PRListComponent implements OnInit{
     prService = inject(PrService);
-    pianorolls: PianoRoll[] = this.prService.excludeElementById(1);
+    @Input() pianorolls: PianoRoll[] = this.prService.pianorolls;
     ngOnInit(): void{
         console.log('list loaded')
     }

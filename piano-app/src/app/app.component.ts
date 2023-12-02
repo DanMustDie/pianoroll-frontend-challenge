@@ -22,7 +22,10 @@ export class AppComponent implements OnInit{
   async ngOnInit(){
     this.dataLoaded = await this.prService.loadPianoRollData();
   }
-  closeModal(){
-    this.modalService.hideModal();
+  closeModal(event : Event){
+    const targetElement = event.target as HTMLElement
+    if(targetElement.classList.contains('overlay')){
+      this.modalService.hideModal();
+    }
   }
 }
