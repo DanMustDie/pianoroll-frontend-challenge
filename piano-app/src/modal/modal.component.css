@@ -17,10 +17,10 @@
     border: 2px solid black;
     height: 30%;
     max-height: 225px;
-    width: 50%;
+    width: fit-content;
     z-index:1;
     position:fixed;
-    max-width:500px;
+    max-width:550px;
     left: 1;
     overflow:scroll;
 }

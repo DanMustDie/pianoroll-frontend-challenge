@@ -19,7 +19,7 @@ export class PrsvgComponent implements OnInit{
       svgDoc.setAttribute('width','80%')
       svgDoc.setAttribute('height','150')
       svgDoc.setAttribute('id','piano-roll-svg' + this.pianoroll.id)
-
+      svgDoc.setAttribute('style','border: 2px solid #381815')
     //Create svg with a class 
       const roll = new PianoRollClass(svgDoc,this.pianoroll.notes)
     

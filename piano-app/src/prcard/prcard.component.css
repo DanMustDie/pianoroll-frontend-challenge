@@ -1,16 +1,14 @@
 .piano-roll-card {
     border: 1px solid #ccc;
+    align-items: center;
+    display:inline-block;
     margin: 5px;
     padding: 5px;
-    width:300px;
+    width:30%;
     box-sizing: border-box;
     object-fit: contain;
 }
 
 .description {
     margin-top: 10px;
-}
-  
-.piano-roll-svg {
-    border: 2px solid #381815;
 }
