@@ -2,7 +2,6 @@ import { Component,SimpleChanges,inject,OnInit } from '@angular/core';
 import { ModalService } from 'src/services/modal.service';
 import { PrService } from 'src/services/pr.service';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
