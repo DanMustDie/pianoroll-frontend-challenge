@@ -1,4 +1,4 @@
-import { Component, OnInit,inject,Input} from "@angular/core";
+import { Component,inject,Input} from "@angular/core";
 import { PrService } from "src/services/pr.service";
 import { PianoRoll } from "src/pianoroll/pianoroll";
 
@@ -8,10 +8,7 @@ import { PianoRoll } from "src/pianoroll/pianoroll";
     styleUrls:['./prlist.component.css']
 })
 
-export class PRListComponent implements OnInit{
+export class PRListComponent{
     prService = inject(PrService);
     @Input() pianorolls: PianoRoll[] = this.prService.pianorolls;
-    ngOnInit(): void{
-        console.log('list loaded')
-    }
 }

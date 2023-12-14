@@ -11,13 +11,18 @@ import {PianoRollClass} from "../assets/pianoroll.js";
 })
 
 export class PRCardComponent{
+    constructor(){
+        this.modalService.getModalVisibility().subscribe(state => {
+            this.modalState = state
+        })
+    }
     modalService = inject(ModalService);
+    modalState : boolean = false;
     svgParsed : any = null;
     cardDiv : Element | null = null;
     @Input() pianoroll!: PianoRoll;
     openModal(){
         this.modalService.setPR(this.pianoroll)
         this.modalService.showModal()
-        console.log(this.pianoroll.id)
     }
 }
