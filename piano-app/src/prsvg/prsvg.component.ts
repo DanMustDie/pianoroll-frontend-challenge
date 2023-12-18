@@ -24,7 +24,7 @@ export class PrsvgComponent implements OnInit{
       const roll = new PianoRollClass(svgDoc,this.pianoroll.notes)
     
     //Render out the element with the renderer
-      this.pianoroll.svg = svgDoc.outerHTML
+      this.pianoroll.svg = svgDoc
       this.renderer.appendChild(this.elem.nativeElement,svgDoc)
   }
 }

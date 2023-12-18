@@ -1,4 +1,4 @@
-import {Component,Input, inject,OnInit,HostListener} from "@angular/core"
+import {Component,Input, inject,OnInit,ElementRef} from "@angular/core"
 import { PianoRoll } from "src/pianoroll/pianoroll"
 import { ModalService } from "src/services/modal.service";
 import { PrService } from "src/services/pr.service";
@@ -12,18 +12,26 @@ import {PianoRollClass} from "../assets/pianoroll.js";
 })
 
 export class ModalComponent implements OnInit{
-    doc : any;
     mousePosition :any;
     modalService = inject(ModalService)
     prService = inject(PrService)
     @Input() pianoroll: PianoRoll = this.modalService.getPR();
     prlistPianorolls = this.prService.excludeElementById(this.pianoroll.id)
     ngOnInit(){
-        this.doc = document.getElementsByClassName('modal-svg-container')[0];
-        this.doc.outerHTML = this.pianoroll.svg
-        this.doc = document.getElementById('piano-roll-svg' + this.pianoroll.id)
-        this.doc.addEventListener('mousemove',(event:any) => {
-            this.mousePosition = `(X:${Math.floor(event.clientX - this.doc.getBoundingClientRect().left)})`
-        })
+        const svg_container = document.getElementById('svg-container');
+        const svg_follower = document.getElementById('svg-follower')
+        if(svg_container != null){
+            svg_container.appendChild(this.pianoroll.svg)
+        }
+        const pr_svg = document.getElementById('piano-roll-svg' + this.pianoroll.id)
+        
+        console.log(pr_svg)
+        console.log(svg_follower)
+        if(pr_svg != null && svg_follower != null){
+            pr_svg.addEventListener('mousemove',(event:any) => {
+                this.mousePosition = Math.floor(event.clientX - pr_svg.getBoundingClientRect().left)
+                svg_follower.style.transform = `translate(${this.mousePosition}px,0px)`
+            })
+        }
     }
 }
