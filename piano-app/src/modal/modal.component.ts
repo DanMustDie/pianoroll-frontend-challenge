@@ -4,6 +4,7 @@ import { ModalService } from "src/services/modal.service";
 import { PrService } from "src/services/pr.service";
 //@ts-ignore
 import {PianoRollClass} from "../assets/pianoroll.js";
+import { first } from "rxjs";
 
 @Component({
     selector:'modal-window',
@@ -19,35 +20,41 @@ export class ModalComponent implements AfterViewInit{
     @Input() pianoroll: PianoRoll = this.modalService.getPR();
     prlistPianorolls = this.prService.excludeElementById(this.pianoroll.id)
     ngAfterViewInit(){
-        const svg_container = document.getElementById('svg-container');
+        let firstFollowerFlag = true;
+        let secondFollowerFlag = true;
+        const svgContainer = document.getElementById('svg-container');
 
-        if(svg_container != null){
-            svg_container.appendChild(this.pianoroll.svg)
+        if(svgContainer != null){
+            svgContainer.appendChild(this.pianoroll.svg)
         }
-        const pr_svg = document.getElementById('piano-roll-svg' + this.pianoroll.id)
+        const prSvg = document.getElementById('piano-roll-svg' + this.pianoroll.id)
+        const svgFollower1 = document.getElementById('svg-follower-1')
+        const svgFollower2 = document.getElementById('svg-follower-2')
 
-        /*pr_svg?.addEventListener('mousemove',(event : any) => {
-            this.mousePosition = Math.floor(event.clientX - pr_svg.getBoundingClientRect().left)
-            svg_follower.x = `translate(${this.mousePosition}px,0px)`
-        })*/
-        /*
-        console.log(pr_svg)
-        console.log(svg_follower)
-        if(pr_svg != null && svg_follower != null){
-            const handleMouseMove = (event:any) => {
-                this.mousePosition = Math.floor(event.clientX - pr_svg.getBoundingClientRect().left)
-                svg_follower.style.transform = `translate(${this.mousePosition}px,0px)`
+        prSvg?.addEventListener('mouseenter',() => {
+            svgFollower1!.style.display = 'unset';
+        })
+        
+        prSvg?.addEventListener('mousemove',(event : any) => {
+            this.mousePosition = Math.floor(event.clientX - prSvg.getBoundingClientRect().left + 2)
+            if(firstFollowerFlag){
+                svgFollower1!.style.transform = `translate(${this.mousePosition}px,0px)`
             }
+        })
 
-            pr_svg.addEventListener('mousemove',handleMouseMove)
-            pr_svg.addEventListener('click',(event:any) => {
-                this.mousePosition = Math.floor(event.clientX - pr_svg.getBoundingClientRect().left)
-                svg_follower.style.transform = `translate(${this.mousePosition}px,0px)`
-                pr_svg.removeEventListener('mousemove',handleMouseMove)
-            },{once:true})
-        }*/
-        //Some notes on what to do
-        //Transform all of the code of the 'follower' element as a seperate angular element for easier logic 
-        //Create a rectangle between those two elements to highlight the chosen segment 
+        svgFollower1?.addEventListener('click',() => {
+            firstFollowerFlag = false;
+            svgFollower2!.style.display = 'unset'
+            svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+            prSvg?.addEventListener('mousemove',() => {
+                if(secondFollowerFlag){
+                    svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+                }
+            })
+        },{once:true})
+
+        svgFollower2?.addEventListener('click',() => {
+            secondFollowerFlag = false
+        },{once:true})
     }
 }
