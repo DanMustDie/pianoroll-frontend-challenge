@@ -27,9 +27,10 @@ export class ModalComponent implements AfterViewInit{
         if(svgContainer != null){
             svgContainer.appendChild(this.pianoroll.svg)
         }
-        const prSvg = document.getElementById('piano-roll-svg' + this.pianoroll.id)
+        const prSvg = document.getElementById('svg-container')
         const svgFollower1 = document.getElementById('svg-follower-1')
         const svgFollower2 = document.getElementById('svg-follower-2')
+        const chosenArea = document.getElementById('chosen-area')
 
         prSvg?.addEventListener('mouseenter',() => {
             svgFollower1!.style.display = 'unset';
@@ -42,19 +43,30 @@ export class ModalComponent implements AfterViewInit{
             }
         })
 
-        svgFollower1?.addEventListener('click',() => {
+        prSvg?.addEventListener('click',() => {
             firstFollowerFlag = false;
             svgFollower2!.style.display = 'unset'
             svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+            chosenArea!.style.transform = svgFollower1!.style.transform
+            let chosen_area_width
             prSvg?.addEventListener('mousemove',() => {
                 if(secondFollowerFlag){
+                    chosen_area_width = svgFollower1!.getBoundingClientRect().left - svgFollower2!.getBoundingClientRect().left
+                    chosenArea!.style.width = `${Math.abs(chosen_area_width)}`
+                    if(chosen_area_width > 0){
+                        chosenArea!.style.transform = svgFollower2!.style.transform
+                    }else{
+                        chosenArea!.style.transform = svgFollower1!.style.transform
+                    }
                     svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
                 }
             })
+
+            prSvg?.addEventListener('click',() => {
+                secondFollowerFlag = false
+            },{once:true})
         },{once:true})
 
-        svgFollower2?.addEventListener('click',() => {
-            secondFollowerFlag = false
-        },{once:true})
+
     }
 }
