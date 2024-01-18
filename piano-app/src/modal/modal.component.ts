@@ -1,4 +1,4 @@
-import {Component,Input, inject,ElementRef, ViewChild, AfterViewInit} from "@angular/core"
+import {Component, inject,AfterViewInit} from "@angular/core"
 import { PianoRoll } from "src/pianoroll/pianoroll"
 import { ModalService } from "src/services/modal.service";
 import { PrService } from "src/services/pr.service";
@@ -17,7 +17,7 @@ export class ModalComponent implements AfterViewInit{
     mousePosition :any;
     modalService = inject(ModalService)
     prService = inject(PrService)
-    @Input() pianoroll: PianoRoll = this.modalService.getPR();
+    pianoroll: PianoRoll = this.modalService.getPR();
     prlistPianorolls = this.prService.excludeElementById(this.pianoroll.id)
     ngAfterViewInit(){
         let firstFollowerFlag = true;

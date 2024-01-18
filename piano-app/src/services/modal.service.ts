@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { PianoRoll } from "src/pianoroll/pianoroll";
+
 @Injectable({providedIn:'root'})
 
 export class ModalService {
+
     private modalVisibility  = new BehaviorSubject<boolean>(false)
-    private prStorage : PianoRoll | any = null;
+    prStorage : PianoRoll | any = null;
     showModal() {
         this.modalVisibility.next(true);
     }
@@ -22,6 +24,6 @@ export class ModalService {
         return this.prStorage;
     }
     setPR(pr:PianoRoll){
-        this.prStorage = pr;
+        this.prStorage = JSON.parse(JSON.stringify(pr)) as PianoRoll;
     }
 }

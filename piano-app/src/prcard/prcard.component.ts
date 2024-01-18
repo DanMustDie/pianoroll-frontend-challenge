@@ -1,4 +1,4 @@
-import { Component,Input, OnInit,inject } from "@angular/core";
+import { Component,ElementRef,Input, OnInit,Renderer2,inject } from "@angular/core";
 import { PianoRoll } from "src/pianoroll/pianoroll";
 import { CommonModule } from "@angular/common";
 import { ModalService } from "src/services/modal.service";
@@ -11,18 +11,17 @@ import {PianoRollClass} from "../assets/pianoroll.js";
 })
 
 export class PRCardComponent{
-    constructor(){
+    constructor(private el : ElementRef, private renderer2 : Renderer2){
         this.modalService.getModalVisibility().subscribe(state => {
             this.modalState = state
         })
     }
     modalService = inject(ModalService);
     modalState : boolean = false;
-    svgParsed : any = null;
-    cardDiv : Element | null = null;
     @Input() pianoroll!: PianoRoll;
     openModal(){
-        this.modalService.setPR(this.pianoroll)
+        this.modalService.prStorage = this.pianoroll
         this.modalService.showModal()
+        console.log(document.getElementById('piano-roll-svg'))
     }
 }
