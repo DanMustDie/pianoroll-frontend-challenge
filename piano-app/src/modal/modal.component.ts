@@ -23,33 +23,36 @@ export class ModalComponent implements AfterViewInit{
         let firstFollowerFlag = true;
         let secondFollowerFlag = true;
         const svgContainer = document.getElementById('svg-container');
-
+        
         if(svgContainer != null){
             svgContainer.appendChild(this.pianoroll.svg)
         }
-        const prSvg = document.getElementById('svg-container')
+        const prSvg = document.getElementById('piano-roll-svg'+ this.pianoroll.id)
+        prSvg!.style.width = svgContainer!.clientWidth+'px'
         const svgFollower1 = document.getElementById('svg-follower-1')
         const svgFollower2 = document.getElementById('svg-follower-2')
         const chosenArea = document.getElementById('chosen-area')
 
-        prSvg?.addEventListener('mouseenter',() => {
+        svgContainer?.addEventListener('mouseenter',() => {
             svgFollower1!.style.display = 'unset';
         })
         
-        prSvg?.addEventListener('mousemove',(event : any) => {
-            this.mousePosition = Math.floor(event.clientX - prSvg.getBoundingClientRect().left + 2)
+        svgContainer?.addEventListener('mousemove',(event : any) => {
+            this.mousePosition = Math.floor(event.clientX - svgContainer.getBoundingClientRect().left + 2)
             if(firstFollowerFlag){
-                svgFollower1!.style.transform = `translate(${this.mousePosition}px,0px)`
+                if(this.mousePosition <= svgContainer!.clientWidth){
+                    svgFollower1!.style.transform = `translate(${this.mousePosition}px,0px)`
+                }            
             }
         })
 
-        prSvg?.addEventListener('click',() => {
+        svgContainer?.addEventListener('click',() => {
             firstFollowerFlag = false;
             svgFollower2!.style.display = 'unset'
             svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
             chosenArea!.style.transform = svgFollower1!.style.transform
             let chosen_area_width
-            prSvg?.addEventListener('mousemove',() => {
+            svgContainer?.addEventListener('mousemove',() => {
                 if(secondFollowerFlag){
                     chosen_area_width = svgFollower1!.getBoundingClientRect().left - svgFollower2!.getBoundingClientRect().left
                     chosenArea!.style.width = `${Math.abs(chosen_area_width)}`
@@ -58,11 +61,14 @@ export class ModalComponent implements AfterViewInit{
                     }else{
                         chosenArea!.style.transform = svgFollower1!.style.transform
                     }
-                    svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+                    if(this.mousePosition <= svgContainer!.clientWidth && this.mousePosition >=0 ){
+                        svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+                    }
+                    
                 }
             })
 
-            prSvg?.addEventListener('click',() => {
+            svgContainer?.addEventListener('click',() => {
                 secondFollowerFlag = false
             },{once:true})
         },{once:true})
