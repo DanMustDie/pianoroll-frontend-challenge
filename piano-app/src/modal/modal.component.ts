@@ -34,7 +34,7 @@ export class ModalComponent implements AfterViewInit{
         const chosenArea = document.getElementById('chosen-area')
 
         svgContainer?.addEventListener('mouseenter',() => {
-            svgFollower1!.style.display = 'unset';
+            svgFollower1!.style.display = 'inline';
         })
         
         svgContainer?.addEventListener('mousemove',(event : any) => {
