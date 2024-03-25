@@ -1,4 +1,4 @@
-import {Component, inject,AfterViewInit} from "@angular/core"
+import {Component, inject,AfterViewInit, AfterViewChecked, ChangeDetectorRef} from "@angular/core"
 import { PianoRoll } from "src/pianoroll/pianoroll"
 import { ModalService } from "src/services/modal.service";
 import { PrService } from "src/services/pr.service";
@@ -12,14 +12,14 @@ import { first } from "rxjs";
     styleUrls:['./modal.component.css']
 })
 
-export class ModalComponent implements AfterViewInit{
-
+export class ModalComponent implements AfterViewChecked{
     mousePosition :any;
     modalService = inject(ModalService)
     prService = inject(PrService)
     pianoroll: PianoRoll = this.modalService.getPR();
     prlistPianorolls = this.prService.excludeElementById(this.pianoroll.id)
-    ngAfterViewInit(){
+    ngAfterViewChecked(){
+
         let firstFollowerFlag = true;
         let secondFollowerFlag = true;
         const svgContainer = document.getElementById('svg-container');
@@ -50,6 +50,7 @@ export class ModalComponent implements AfterViewInit{
             firstFollowerFlag = false;
             svgFollower2!.style.display = 'unset'
             svgFollower2!.style.transform = `translate(${this.mousePosition}px,0px)`
+            chosenArea!.style.display = 'unset'
             chosenArea!.style.transform = svgFollower1!.style.transform
             let chosen_area_width
             svgContainer?.addEventListener('mousemove',() => {
@@ -72,7 +73,5 @@ export class ModalComponent implements AfterViewInit{
                 secondFollowerFlag = false
             },{once:true})
         },{once:true})
-
-
     }
 }
