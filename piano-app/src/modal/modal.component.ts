@@ -36,16 +36,17 @@ export class ModalComponent implements AfterViewChecked{
         svgContainer?.addEventListener('mouseenter',() => {
             svgFollower1!.style.display = 'inline';
         })
-        
+        /*
         svgContainer?.addEventListener('mousemove',(event : any) => {
             this.mousePosition = Math.floor(event.clientX - svgContainer.getBoundingClientRect().left + 2)
             if(firstFollowerFlag){
                 if(this.mousePosition <= svgContainer!.clientWidth){
-                    svgFollower1!.style.transform = `translate(${this.mousePosition}px,0px)`
+                    svgFollower1!.style.left= this.mousePosition + 'px'
                 }            
             }
         })
 
+        
         svgContainer?.addEventListener('click',() => {
             firstFollowerFlag = false;
             svgFollower2!.style.display = 'unset'
@@ -73,5 +74,7 @@ export class ModalComponent implements AfterViewChecked{
                 secondFollowerFlag = false
             },{once:true})
         },{once:true})
+        */
     }
+    
 }
